@@ -2,6 +2,15 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 class Start extends Component<{}> {
+
+  componentDidMount() {
+    const { navigate } = this.props.navigation;
+
+    setTimeout(() => {
+      navigate('Authentication');
+    }, 1500);
+  }
+
   render() {
     return (
       <View style={styles.container}>
