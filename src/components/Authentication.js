@@ -3,7 +3,11 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Input from './common/Input';
 
 class Authentication extends Component<{}> {
+
   render() {
+
+    const { navigate } = this.props.navigation;
+
     return (
       <View style={styles.container}>
         <View style={styles.headerContainer}>
@@ -18,7 +22,9 @@ class Authentication extends Component<{}> {
             title="PASSWORD"
           />
           <View style={{ alignSelf: 'stretch' }}>
-            <TouchableOpacity onPress={this._onPressButton}>
+            <TouchableOpacity onPress={this._onPressButton}
+              onPress={() => navigate('Home')}
+            >
               <View style={styles.button}>
                 <Text style={styles.buttonText}>E N T R A R</Text>
               </View>
