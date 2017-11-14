@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import Header from './common/Header';
 import Item from './common/Item';
+import Navbar from './common/Navbar';
 
 class Home extends Component<{}> {
   render() {
@@ -14,8 +15,8 @@ class Home extends Component<{}> {
           <Item />
           <Item />
           <Item />
-          <Item />
         </View>
+        <Navbar />
       </View>
     );
   }
@@ -24,6 +25,7 @@ class Home extends Component<{}> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'space-between'
   },
 
   listContainer: {
