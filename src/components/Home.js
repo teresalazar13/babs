@@ -24,6 +24,7 @@ class Home extends Component<{}> {
         </ScrollView>
         <Navbar
           navigation={this.props.navigation}
+          selectedTab="2"
         />
       </View>
     );

@@ -19,7 +19,7 @@ class ItemRequested extends Component<{}> {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.titleT}>AGUARDA QUE ALGUEM RESPONDA AO TEU PEDIDO</Text>
+        <Text style={styles.titleT}>AGUARDA QUE ALGUÉM RESPONDA AO TEU PEDIDO</Text>
         <View style={styles.containerSub}>
           <View style={{ flexDirection:'row', justifyContent: 'space-between', padding: 5 }}>
             <View style={{ flexDirection:'column' }}>

@@ -3,6 +3,7 @@ import Start from './components/Start';
 import Authentication from './components/Authentication';
 import Home from './components/Home';
 import NewRequest from './components/NewRequest';
+import Profile from './components/Profile';
 
 
 let MyTransition = (index, position) => {
@@ -59,6 +60,13 @@ export const Router = StackNavigator({
 
     NewRequest: {
       screen: NewRequest,
+      navigationOptions: {
+        header: false
+      }
+    },
+
+    Profile: {
+      screen: Profile,
       navigationOptions: {
         header: false
       }

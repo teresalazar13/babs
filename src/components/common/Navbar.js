@@ -9,26 +9,58 @@ class Navbar extends Component<{}> {
     return (
       <View style={styles.container}>
 
-        <TouchableHighlight style={styles.leftSubContainer} underlayColor="#a1a0a1" onPress={this._onPressButton}
+        <TouchableHighlight style={this.renderStyles("1")} underlayColor="#a1a0a1" onPress={this._onPressButton}
           onPress={() => navigate('NewRequest')}
         >
           <Text style={styles.title}>NEW REQUEST</Text>
         </TouchableHighlight>
 
-        <TouchableHighlight style={styles.leftSubContainer} underlayColor="#a1a0a1" onPress={this._onPressButton}
+        <TouchableHighlight style={this.renderStyles("2")} underlayColor="#a1a0a1" onPress={this._onPressButton}
           onPress={() => navigate('Home')}
         >
           <Text style={styles.title}>HOME</Text>
         </TouchableHighlight>
 
-        <TouchableHighlight style={styles.leftSubContainer} underlayColor="#a1a0a1" onPress={this._onPressButton}
-          onPress={() => navigate('Home')}
+        <TouchableHighlight style={this.renderStyles("3")} underlayColor="#a1a0a1" onPress={this._onPressButton}
+          onPress={() => navigate('Profile')}
         >
           <Text style={styles.title}>PROFILE</Text>
         </TouchableHighlight>
-        
+
       </View>
     );
+  }
+
+  renderStyles(tab) {
+    const {
+      leftSubContainer,
+      leftSelectedSubContainer,
+      centerSubContainer,
+      centerSelectedSubContainer,
+      rightSubContainer,
+      rightSelectedSubContainer
+    } = styles;
+
+    const { selectedTab } = this.props;
+
+    if (tab == "1") {
+      if (tab != selectedTab) {
+        return leftSubContainer;
+      }
+      return leftSelectedSubContainer;
+    }
+    else if (tab == "2") {
+      if (tab != selectedTab) {
+        return centerSubContainer;
+      }
+      return centerSelectedSubContainer;
+    }
+    else {
+      if (tab != selectedTab) {
+        return rightSubContainer;
+      }
+      return rightSelectedSubContainer;
+    }
   }
 }
 
@@ -50,8 +82,8 @@ const styles = StyleSheet.create({
   },
 
   centerSelectedSubContainer: {
-    borderLeftWidth: 1,
-    borderRightWidth: 1,
+    borderLeftWidth: 2,
+    borderRightWidth: 2,
     borderColor: '#a1a0a1',
     justifyContent: 'center',
     alignItems: 'center',

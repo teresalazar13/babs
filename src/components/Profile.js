@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import Header from './common/Header';
 import Navbar from './common/Navbar';
+import Input from './common/Input';
 
 
-class NewRequest extends Component<{}> {
+class Profile extends Component<{}> {
 
   constructor(props) {
     super(props);
@@ -25,37 +26,16 @@ class NewRequest extends Component<{}> {
         <Header />
 
         <View style={styles.listContainer}>
-          <Text style={styles.title}>ADICIONA UM PEDIDO</Text>
+          <Text style={styles.title}>PERFIL</Text>
 
-          <TextInput
-            style={styles.input}
-            onChangeText={(textDescription) => this.setState({textDescription})}
-            value={this.state.textDescription}
-            placeholder="Descrição"
+          <Input
+            title="USERNAME"
           />
-          <TextInput
-            style={styles.input}
-            onChangeText={(textAddress) => this.setState({textAddress})}
-            value={this.state.textAddress}
-            placeholder="Morada"
+          <Input
+            title="PASSWORD"
           />
-          <TextInput
-            style={styles.input}
-            onChangeText={(textPrice) => this.setState({textPrice})}
-            value={this.state.textPrice}
-            placeholder="Preço"
-          />
-          <TextInput
-            style={styles.input}
-            onChangeText={(textTime) => this.setState({textTime})}
-            value={this.state.textTime}
-            placeholder="Tempo de espera máximo (minutos)"
-          />
-          <TextInput
-            style={styles.input}
-            onChangeText={(textContact) => this.setState({textContact})}
-            value={this.state.textContact}
-            placeholder="Contacto telefónico"
+          <Input
+            title="CONTACTO TELEFONICO"
           />
 
           <TouchableOpacity onPress={this._onPressButton}
@@ -69,7 +49,7 @@ class NewRequest extends Component<{}> {
 
         <Navbar
           navigation={this.props.navigation}
-          selectedTab="1"
+          selectedTab="3"
         />
       </View>
     );
@@ -88,7 +68,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 14,
     alignSelf: 'center',
-    paddingTop: 25
+    paddingTop: 25,
+    paddingBottom: 30
   },
 
   listContainer: {
@@ -100,23 +81,13 @@ const styles = StyleSheet.create({
     paddingRight: 40,
   },
 
-  input: {
-    marginTop: 25,
-    padding: 15,
-    alignSelf: 'stretch',
-    borderColor: '#b3b2b3',
-    borderWidth: 2,
-    borderRadius: 5,
-    fontSize: 14,
-  },
-
   button: {
     alignItems: 'center',
     backgroundColor: '#f5a826',
     padding: 12,
     borderRadius: 10,
     width: 150,
-    marginTop: 25
+    marginBottom: 45
   },
 
   buttonText: {
@@ -126,4 +97,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default NewRequest;
+export default Profile;
