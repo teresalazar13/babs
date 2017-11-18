@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import Header from './common/Header';
 import Item from './common/Item';
+import ItemReceived from './common/ItemReceived';
+import ItemRequested from './common/ItemRequested';
 import Navbar from './common/Navbar';
 
 class Home extends Component<{}> {
@@ -10,6 +12,8 @@ class Home extends Component<{}> {
       <View style={styles.container}>
         <Header />
         <View style={styles.listContainer}>
+          <ItemReceived />
+          <ItemRequested />
           <Item />
           <Item />
           <Item />

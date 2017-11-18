@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     color: '#b3b2b3',
     fontFamily: 'arial',
     fontWeight: 'bold',
-    paddingTop: 10,
+    paddingTop: 8,
     fontSize: 10
   },
 
