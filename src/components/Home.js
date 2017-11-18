@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, ScrollView } from 'react-native';
 import Header from './common/Header';
 import Item from './common/Item';
 import ItemReceived from './common/ItemReceived';
@@ -11,16 +11,20 @@ class Home extends Component<{}> {
     return (
       <View style={styles.container}>
         <Header />
-        <View style={styles.listContainer}>
-          <ItemReceived />
-          <ItemRequested />
-          <Item />
-          <Item />
-          <Item />
-          <Item />
-          <Item />
-        </View>
-        <Navbar />
+        <ScrollView style={styles.scrollViewStyle}>
+          <View style={styles.listContainer}>
+            <ItemReceived />
+            <ItemRequested />
+            <Item />
+            <Item />
+            <Item />
+            <Item />
+            <Item />
+          </View>
+        </ScrollView>
+        <Navbar
+          navigation={this.props.navigation}
+        />
       </View>
     );
   }
@@ -32,13 +36,17 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
 
-  listContainer: {
+  scrollViewStyle: {
     flex: 1,
+  },
+
+  listContainer: {
     alignItems: 'center',
     backgroundColor: 'white',
     paddingTop: 10,
     paddingLeft: 40,
     paddingRight: 40,
+    paddingBottom: 25
   },
 });
 

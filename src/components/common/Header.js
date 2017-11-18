@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#f5a826',
+    paddingBottom: 10
   },
 
   title: {
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Arial',
     fontStyle: 'italic',
     fontWeight: 'bold',
-    paddingTop: 30
+    paddingTop: 30,
   },
 });
 
