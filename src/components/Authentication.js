@@ -1,12 +1,34 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Input from './common/Input';
+import { usernameChanged, passwordChanged, loginUser } from '../actions';
+import { connect } from 'react-redux';
 
 class Authentication extends Component<{}> {
 
-  render() {
-
+  componentDidUpdate() {
     const { navigate } = this.props.navigation;
+    console.log("updating");
+    if (this.props.user == true) {
+      navigate('Home');
+    }
+  }
+
+  onUsernameChange(text) {
+    this.props.usernameChanged(text);
+  }
+
+  onPasswordChange(text) {
+    this.props.passwordChanged(text);
+  }
+
+  handleOnPressButton() {
+    const { navigate } = this.props.navigation;
+    const { username, password, user } = this.props;
+    this.props.loginUser({ username, password });
+  }
+
+  render() {
 
     return (
       <View style={styles.container}>
@@ -17,19 +39,26 @@ class Authentication extends Component<{}> {
         <View style={styles.authContainer}>
           <Input
             title="USERNAME"
+            onChangeText={this.onUsernameChange.bind(this)}
+            value={this.props.username}
           />
           <Input
             title="PASSWORD"
+            onChangeText={this.onPasswordChange.bind(this)}
+            value={this.props.password}
             secureTextEntry
           />
           <View style={{ alignSelf: 'stretch' }}>
             <TouchableOpacity onPress={this._onPressButton}
-              onPress={() => navigate('Home')}
+              onPress={() => this.handleOnPressButton()}
             >
               <View style={styles.button}>
                 <Text style={styles.buttonText}>E N T R A R</Text>
               </View>
             </TouchableOpacity>
+            <Text style={styles.errorTextStyle}>
+              {this.props.error}
+            </Text>
           </View>
         </View>
       </View>
@@ -89,7 +118,24 @@ const styles = StyleSheet.create({
     fontFamily: 'Arial',
     fontWeight: '400',
     fontSize: 12
+  },
+
+  errorTextStyle: {
+    fontSize: 20,
+    alignSelf: 'center',
+    color: 'black',
+    fontFamily: 'Arial',
+    marginBottom: 20
   }
 });
 
-export default Authentication;
+const mapStateToProps = ({ auth }) => {
+  const { username, password, error, user } = auth;
+  return { username, password, error, user };
+};
+
+export default connect(mapStateToProps, {
+  usernameChanged,
+  passwordChanged,
+  loginUser,
+})(Authentication);

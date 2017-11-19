@@ -3,13 +3,9 @@ import { StyleSheet, Text, View, TextInput } from 'react-native';
 
 class Input extends Component<{}> {
 
-  constructor(props) {
-    super(props);
-    this.state = { text: '' };
-  }
 
   render() {
-    const { title, secureTextEntry } = this.props;
+    const { title, secureTextEntry, value, onChangeText } = this.props;
 
     return (
       <View style={styles.container}>
@@ -19,7 +15,8 @@ class Input extends Component<{}> {
         <TextInput
           style={styles.input}
           onChangeText={(text) => this.setState({text})}
-          value={this.state.text}
+          value={value}
+          onChangeText={onChangeText}
           secureTextEntry={secureTextEntry}
         />
       </View>
