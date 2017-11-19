@@ -9,7 +9,7 @@ class Input extends Component<{}> {
   }
 
   render() {
-    const { title } = this.props;
+    const { title, secureTextEntry } = this.props;
 
     return (
       <View style={styles.container}>
@@ -20,6 +20,7 @@ class Input extends Component<{}> {
           style={styles.input}
           onChangeText={(text) => this.setState({text})}
           value={this.state.text}
+          secureTextEntry={secureTextEntry}
         />
       </View>
     );

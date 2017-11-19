@@ -20,6 +20,7 @@ class Authentication extends Component<{}> {
           />
           <Input
             title="PASSWORD"
+            secureTextEntry
           />
           <View style={{ alignSelf: 'stretch' }}>
             <TouchableOpacity onPress={this._onPressButton}
