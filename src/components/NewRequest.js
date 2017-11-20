@@ -2,19 +2,37 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import Header from './common/Header';
 import Navbar from './common/Navbar';
+import { titleChanged, addressChanged, priceChanged, timeChanged, phoneChanged, createOrder } from '../actions';
+import { connect } from 'react-redux';
 
 
 class NewRequest extends Component<{}> {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      textDescription: '',
-      textAddress: '',
-      textPrice: '',
-      textTime: '',
-      textContact:''
-    };
+  onTitleChange(text) {
+    this.props.titleChanged(text);
+  }
+
+  onAddressChange(text) {
+    this.props.addressChanged(text);
+  }
+
+  onPriceChange(text) {
+    this.props.priceChanged(text);
+  }
+
+  onTimeChange(text) {
+    this.props.timeChanged(text);
+  }
+
+  onPhoneChange(text) {
+    this.props.phoneChanged(text);
+  }
+
+  handleOnPressButton() {
+    const { navigate } = this.props.navigation;
+    const { title, address, price, time, phone } = this.props;
+
+    //this.props.createOrder({  });
   }
 
   render() {
@@ -29,37 +47,37 @@ class NewRequest extends Component<{}> {
 
           <TextInput
             style={styles.input}
-            onChangeText={(textDescription) => this.setState({textDescription})}
-            value={this.state.textDescription}
+            onChangeText={(text) => this.setState({text})}
+            value={this.props.title}
             placeholder="Descrição"
           />
           <TextInput
             style={styles.input}
-            onChangeText={(textAddress) => this.setState({textAddress})}
-            value={this.state.textAddress}
+            onChangeText={(text) => this.setState({text})}
+            value={this.props.address}
             placeholder="Morada"
           />
           <TextInput
             style={styles.input}
-            onChangeText={(textPrice) => this.setState({textPrice})}
-            value={this.state.textPrice}
+            onChangeText={(text) => this.setState({text})}
+            value={this.props.price}
             placeholder="Preço"
           />
           <TextInput
             style={styles.input}
-            onChangeText={(textTime) => this.setState({textTime})}
-            value={this.state.textTime}
+            onChangeText={(text) => this.setState({text})}
+            value={this.props.time}
             placeholder="Tempo de espera máximo (minutos)"
           />
           <TextInput
             style={styles.input}
-            onChangeText={(textContact) => this.setState({textContact})}
-            value={this.state.textContact}
+            onChangeText={this.onPhoneChange.bind(this)}
+            value={this.state.phone}
             placeholder="Contacto telefónico"
           />
 
           <TouchableOpacity onPress={this._onPressButton}
-            onPress={() => navigate('Home')}
+            onPress={() => this.handleOnPressButton()}
           >
             <View style={styles.button}>
               <Text style={styles.buttonText}>SUBMETER</Text>
@@ -126,4 +144,11 @@ const styles = StyleSheet.create({
   }
 });
 
-export default NewRequest;
+const mapStateToProps = ({ order }) => {
+  const { title, address, price, time, phone } = order;
+  return { title, address, price, time, phone };
+};
+
+export default connect(mapStateToProps, {
+  titleChanged, addressChanged, priceChanged, timeChanged, phoneChanged, createOrder
+})(NewRequest);

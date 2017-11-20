@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, ScrollView } from 'react-native';
+import { connect } from 'react-redux';
 import Header from './common/Header';
 import Item from './common/Item';
 import ItemReceived from './common/ItemReceived';
@@ -7,6 +8,7 @@ import ItemRequested from './common/ItemRequested';
 import Navbar from './common/Navbar';
 
 class Home extends Component<{}> {
+
   render() {
     return (
       <View style={styles.container}>
@@ -51,4 +53,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+const mapStateToProps = ({ auth }) => {
+  const { user } = auth;
+  return { user };
+};
+
+export default connect(mapStateToProps, {
+})(Home);

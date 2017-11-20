@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import Input from './common/Input';
 import { usernameChanged, passwordChanged, loginUser } from '../actions';
 import { connect } from 'react-redux';
+import Input from './common/Input';
+
 
 class Authentication extends Component<{}> {
 
   componentDidUpdate() {
     const { navigate } = this.props.navigation;
-    console.log("updating");
-    if (this.props.user == true) {
+    if (this.props.user != null) {
+      /*console.log(this.props.user);
+      console.log(this.props.user._id);*/
       navigate('Home');
     }
   }
@@ -23,7 +25,6 @@ class Authentication extends Component<{}> {
   }
 
   handleOnPressButton() {
-    const { navigate } = this.props.navigation;
     const { username, password, user } = this.props;
     this.props.loginUser({ username, password });
   }
