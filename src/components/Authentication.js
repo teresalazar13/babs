@@ -8,8 +8,7 @@ class Authentication extends Component<{}> {
 
   componentDidUpdate() {
     const { navigate } = this.props.navigation;
-    console.log("updating");
-    if (this.props.user == true) {
+    if (this.props.user != null) {
       navigate('Home');
     }
   }

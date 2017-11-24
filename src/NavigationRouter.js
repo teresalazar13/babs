@@ -73,6 +73,7 @@ export const Router = StackNavigator({
     },
 
   },{
-    transitionConfig: TransitionConfiguration
+    transitionConfig: TransitionConfiguration,
+    initialRouteName: true ? "Authentication" : "Home"
   }
 );

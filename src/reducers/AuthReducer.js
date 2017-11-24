@@ -7,10 +7,11 @@ import {
 } from '../actions/types';
 
 const INITIAL_STATE = {
+  token: "",
   username: "",
   password: "",
   error: "",
-  user: null
+  user: null,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -24,7 +25,7 @@ export default (state = INITIAL_STATE, action) => {
     case LOGIN_USER_SUCCESS:
       return { ...state, ...INITIAL_STATE, user: action.payload };
     case LOGIN_USER_FAIL:
-      return { ...state, error: 'Authentication Failed', password: '', loading: false };
+      return { ...state, error: 'Authentication Failed', password: '' };
     default:
       return state;
   }

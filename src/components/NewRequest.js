@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import Header from './common/Header';
 import Navbar from './common/Navbar';
-
+import { newItem } from '../actions';
+import { connect } from 'react-redux';
 
 class NewRequest extends Component<{}> {
 
@@ -13,8 +14,23 @@ class NewRequest extends Component<{}> {
       textAddress: '',
       textPrice: '',
       textTime: '',
-      textContact:''
+      textContact: ''
     };
+  }
+
+  componentDidUpdate() {
+    console.log(this.props.navigateHome);
+    const { navigate } = this.props.navigation;
+    if (this.props.navigateHome == true) {
+      navigate('Home');
+    }
+  }
+
+  handleOnPressButton() {
+    const { username, password, user } = this.props;
+    const token = user.token;
+    const { textDescription, textAddress, textPrice, textTime, textContact } = this.state;
+    this.props.newItem({ textDescription, textAddress, textPrice, textTime, textContact, token });
   }
 
   render() {
@@ -59,12 +75,16 @@ class NewRequest extends Component<{}> {
           />
 
           <TouchableOpacity onPress={this._onPressButton}
-            onPress={() => navigate('Home')}
+            onPress={() => this.handleOnPressButton()}
           >
             <View style={styles.button}>
               <Text style={styles.buttonText}>SUBMETER</Text>
             </View>
           </TouchableOpacity>
+
+          <Text style={styles.errorTextStyle}>
+            {this.props.errorR}
+          </Text>
         </View>
 
         <Navbar
@@ -123,7 +143,22 @@ const styles = StyleSheet.create({
     color: 'black',
     fontFamily: 'Arial',
     fontSize: 12
+  },
+
+  errorTextStyle: {
+    fontSize: 20,
+    alignSelf: 'center',
+    color: 'black',
+    fontFamily: 'Arial',
   }
 });
 
-export default NewRequest;
+const mapStateToProps = ({ auth, list }) => {
+  const { user } = auth;
+  const { errorR, navigateHome } = list;
+  return { user, errorR, navigateHome };
+};
+
+export default connect(mapStateToProps, {
+  newItem
+})(NewRequest);
