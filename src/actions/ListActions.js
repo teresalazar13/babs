@@ -2,7 +2,6 @@ import {
   NEW_ITEM,
   NEW_ITEM_FAIL,
   NEW_ITEM_SUCCESS,
-  LIST_FETCH_SUCCESS,
 } from './types';
 
 
@@ -42,35 +41,10 @@ export const newItem = (item) => {
   }
 };
 
-const newItemFail = (dispatch) => {
+export const newItemFail = (dispatch) => {
   dispatch({ type: NEW_ITEM_FAIL });
 };
 
-const newItemSuccess = (dispatch) => {
+export const newItemSuccess = (dispatch) => {
   dispatch({ type: NEW_ITEM_SUCCESS });
-};
-
-export const listFetch = (user) => {
-  return (dispatch) => {
-
-    fetch('https://backendbabs.herokuapp.com/orders/listOthersActiveOrders', {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        username: username,
-        password: password,
-      })
-    })
-    .then((response) => response.json())
-    .then((responseJson) => {
-      console.log(responseJson);
-      if (responseJson.success) {
-        console.log("Success");
-        loginUserSuccess(dispatch, responseJson.data);
-      }
-    })
-  }
 };
