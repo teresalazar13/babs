@@ -19,7 +19,6 @@ class NewRequest extends Component<{}> {
   }
 
   componentDidUpdate() {
-    console.log(this.props.navigateHome);
     const { navigate } = this.props.navigation;
     if (this.props.navigateHome == true) {
       navigate('Home');

@@ -17,34 +17,41 @@ class ItemRequested extends Component<{}> {
   }
 
   render() {
+    const { title, address, price, phone, createdByUsername, endDateDay, endDateTime } = this.props;
+
     return (
       <View style={styles.container}>
         <Text style={styles.titleT}>AGUARDA QUE ALGUÉM RESPONDA AO TEU PEDIDO</Text>
+
         <View style={styles.containerSub}>
           <View style={{ flexDirection:'row', justifyContent: 'space-between', padding: 5 }}>
             <View style={{ flexDirection:'column' }}>
-              <Text style={styles.title}>NUGGETS</Text>
-              <Text style={styles.subtitle}>Rua Miguel Torga, n 150</Text>
+              <Text style={styles.title}>{title}</Text>
+              <Text style={styles.subtitle}>{address}</Text>
             </View>
             <View style={styles.circle}>
-              <Text style={styles.price}>7€</Text>
+              <Text style={styles.price}>{price}€</Text>
             </View>
           </View>
+
           <View style={{ flexDirection:'row', justifyContent: 'space-between', padding: 5, marginTop: 10 }}>
             <View style={{ flexDirection:'column' }}>
-              <Text style={styles.title}>Alexandre Santos</Text>
-              <Text style={styles.subtitle}>914098900</Text>
+              <Text style={styles.title}>{createdByUsername}</Text>
+              <Text style={styles.subtitle}>{phone}</Text>
             </View>
             <View style={styles.containerTime}>
-              <Text style={styles.time}>18:30</Text>
+              <Text style={styles.time}>{endDateTime}</Text>
+              <Text style={styles.time}>{endDateDay}</Text>
             </View>
           </View>
+
           <View style={styles.containerBottom}>
             <View style={styles.containerTerminate}>
               <Text style={styles.terminate}>T E R M I N A R</Text>
             </View>
           </View>
         </View>
+
       </View>
     );
   }

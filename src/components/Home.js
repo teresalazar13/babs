@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, ScrollView, ListView } from 'react-native';
-import Header from './common/Header';
-import Item from './common/Item';
-import ItemReceived from './common/ItemReceived';
-import ItemRequested from './common/ItemRequested';
-import Navbar from './common/Navbar';
 import { listOthersActiveOrders } from '../actions';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
+import Header from './common/Header';
+import Item from './common/Item';
+import ItemReceived from './common/ItemReceived';
+import Navbar from './common/Navbar';
+import ListMyOrders from './common/ListMyOrders';
 
 class Home extends Component<{}> {
 
@@ -58,7 +58,11 @@ class Home extends Component<{}> {
         <ScrollView style={styles.scrollViewStyle}>
           <View style={styles.listContainer}>
             <ItemReceived />
-            <ItemRequested />
+
+            <ListMyOrders
+              props={this.props}
+            />
+
             <ListView
               enableEmptySections
               dataSource={this.dataSource}
