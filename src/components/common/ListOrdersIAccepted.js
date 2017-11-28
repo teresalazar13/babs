@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ListView } from 'react-native';
-import { listMyActiveOrders } from '../../actions';
+import { listActiveOrdersIAccepted } from '../../actions';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
-import ItemRequested from './ItemRequested';
+import ItemReceived from './ItemReceived';
 
 
-class ListMyOrders extends Component<{}> {
+class ListOrdersIAccepted extends Component<{}> {
 
   componentWillMount() {
     const token = this.props.user.token;
-    this.props.listMyActiveOrders(token);
+    this.props.listActiveOrdersIAccepted(token);
     this.createDataSource(this.props);
   }
 
@@ -19,12 +19,12 @@ class ListMyOrders extends Component<{}> {
     this.createDataSource(nextProps);
   }
 
-  createDataSource({ myActiveOrders }) {
+  createDataSource({ activeOrdersIAccepted }) {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     });
 
-    this.dataSource = ds.cloneWithRows(myActiveOrders);
+    this.dataSource = ds.cloneWithRows(activeOrdersIAccepted);
   }
 
   renderRow(order) {
@@ -36,7 +36,7 @@ class ListMyOrders extends Component<{}> {
     const endDateTime = endDate.substring(11, endDate.length - 5);
 
     return (
-      <ItemRequested
+      <ItemReceived
         title={titleUpper}
         address={address}
         price={price}
@@ -64,12 +64,12 @@ class ListMyOrders extends Component<{}> {
 
 const mapStateToProps = (state) => {
   const { user } = state.auth;
-  const myActiveOrders = _.map(state.myActiveOrders, (val, uid) => {
+  const activeOrdersIAccepted = _.map(state.activeOrdersIAccepted, (val, uid) => {
     return { ...val, uid };
   });
-  return { user, myActiveOrders };
+  return { user, activeOrdersIAccepted };
 };
 
 export default connect(mapStateToProps, {
-  listMyActiveOrders
-})(ListMyOrders);
+  listActiveOrdersIAccepted
+})(ListOrdersIAccepted);

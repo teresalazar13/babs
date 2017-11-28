@@ -1,10 +1,10 @@
 import {
-  LIST_MY_ACTIVE_ORDERS_SUCCESS
+  LIST_ACTIVE_ORDERS_I_ACCEPTED_SUCCESS
 } from './types';
 
-export const listMyActiveOrders = (token) => {
+export const listActiveOrdersIAccepted = (token) => {
   return (dispatch) => {
-    fetch('https://backendbabs.herokuapp.com/order/listActiveOrders', {
+    fetch('https://backendbabs.herokuapp.com/order/listAcceptedOrders', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -16,7 +16,7 @@ export const listMyActiveOrders = (token) => {
     })
     .then((responseJson) => {
       if (responseJson.ok) {
-        dispatch({ type: LIST_MY_ACTIVE_ORDERS_SUCCESS, payload: JSON.parse(responseJson._bodyText).data });
+        dispatch({ type: LIST_ACTIVE_ORDERS_I_ACCEPTED_SUCCESS, payload: JSON.parse(responseJson._bodyText).data });
       }
     })
     .catch(function(error) {

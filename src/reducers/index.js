@@ -3,11 +3,15 @@ import AuthReducer from './AuthReducer';
 import ListReducer from './ListReducer';
 import OthersActiveOrdersReducer from './OthersActiveOrdersReducer';
 import MyActiveOrdersReducer from './MyActiveOrdersReducer';
+import ActiveOrdersIAcceptedReducer from './ActiveOrdersIAcceptedReducer';
+import AcceptOrderReducer from './AcceptOrderReducer';
 
 
 export default combineReducers({
   auth: AuthReducer,
   list: ListReducer,
   othersActiveOrders: OthersActiveOrdersReducer,
-  myActiveOrders: MyActiveOrdersReducer
+  myActiveOrders: MyActiveOrdersReducer,
+  activeOrdersIAccepted: ActiveOrdersIAcceptedReducer,
+  acceptOrder: AcceptOrderReducer
 });

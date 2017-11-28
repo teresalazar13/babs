@@ -38,14 +38,11 @@ export const loginUser = ({ username, password }) => {
     })
     .then((response) => response.json())
     .then((responseJson) => {
-      console.log(responseJson);
       if (responseJson.success) {
-        console.log("Success");
         loginUserSuccess(dispatch, responseJson.data);
       }
       else {
         if (responseJson.message == "Wrong password") {
-          console.log("Fail");
           loginUserFail(dispatch);
         }
         fetch('https://backendbabs.herokuapp.com/auth/register', {
@@ -62,13 +59,10 @@ export const loginUser = ({ username, password }) => {
         })
         .then((response) => response.json())
         .then((responseJson) => {
-          console.log(responseJson);
           if (responseJson.success) {
-            console.log("Success");
             loginUserSuccess(dispatch, responseJson.data);
           }
           else {
-            console.log("Fail");
             loginUserFail(dispatch);
           }
         })

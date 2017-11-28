@@ -11,3 +11,7 @@ export const NEW_ITEM_SUCCESS = 'new_item_success';
 export const LIST_OTHERS_ACTIVE_ORDERS_SUCCESS = 'list_others_active_orders_success';
 
 export const LIST_MY_ACTIVE_ORDERS_SUCCESS = 'list_my_active_orders_success';
+
+export const LIST_ACTIVE_ORDERS_I_ACCEPTED_SUCCESS = 'list_active_orders_i_accepted_success';
+
+export const ACCEPT_ORDER_SUCCESS = 'accept_order_success';

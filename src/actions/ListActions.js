@@ -24,18 +24,14 @@ export const newItem = (item) => {
       })
     })
     .then((responseJson) => {
-      console.log(responseJson);
       if (responseJson.ok) {
-        console.log("Success");
         newItemSuccess(dispatch);
       }
       else {
-        console.log("Fail");
         newItemFail(dispatch);
       }
     })
     .catch(function(error) {
-      console.log('There has been a problem with your fetch operation: ' + error.message);
       throw error;
     });
   }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { listOthersActiveOrders, acceptOrder } from '../../actions';
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
+import { connect } from 'react-redux';
 
 class Item extends Component<{}> {
 
@@ -18,7 +20,9 @@ class Item extends Component<{}> {
   }
 
   render() {
-    const { title, address, price, phone, createdByUsername, endDateDay, endDateTime } = this.props;
+    const { title, address, price, phone, createdByUsername, endDateDay, endDateTime, _id, token } = this.props;
+
+    const item = { token, _id };
 
     return (
       <View style={styles.container}>
@@ -50,11 +54,18 @@ class Item extends Component<{}> {
                 </View>
               </View>
 
-              <View style={styles.containerBottom}>
-                <View style={styles.containerTerminate}>
-                  <Text style={styles.terminate}>R E S P O N D E R</Text>
+              <TouchableHighlight
+                onPress={() => this.props.acceptOrder(item) }
+              >
+
+                <View style={styles.containerBottom}>
+                  <View style={styles.containerTerminate}>
+                    <Text style={styles.terminate}>R E S P O N D E R</Text>
+                  </View>
                 </View>
-              </View>
+
+              </TouchableHighlight>
+
 
             </View>
           </View>
@@ -167,5 +178,6 @@ const styles = StyleSheet.create({
   },
 });
 
-
-export default Item;
+export default connect(null, {
+  acceptOrder
+})(Item);
