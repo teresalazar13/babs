@@ -15,7 +15,7 @@ export const newItem = (item) => {
       },
       body: JSON.stringify({
         title: item.textDescription,
-        price: item.textPrice,
+        price: Number(item.textPrice),
         place_name: item.textAddress,
         place_address: item.textAddress,
         time: item.textTime,

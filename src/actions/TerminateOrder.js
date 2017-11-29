@@ -1,15 +1,13 @@
-import { NavigationActions } from 'react-navigation';
 import {
-  ACCEPT_ORDER_SUCCESS,
-  SET_NAVIGATE_HOME_FALSE
+  TERMINATE_ORDER_SUCCESS
 } from './types';
 
 
-export const acceptOrder = (item) => {
+export const terminateOrder = (item) => {
   const { token, _id } = item;
 
   return (dispatch) => {
-    fetch('https://backendbabs.herokuapp.com/order/accept', {
+    fetch('https://backendbabs.herokuapp.com/order/finish', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -21,8 +19,9 @@ export const acceptOrder = (item) => {
       })
     })
     .then((responseJson) => {
+      console.log(responseJson);
       if (responseJson.ok) {
-        dispatch({ type: ACCEPT_ORDER_SUCCESS, payload: JSON.parse(responseJson._bodyText).data });
+        dispatch({ type: TERMINATE_ORDER_SUCCESS, payload: JSON.parse(responseJson._bodyText).data });
       }
     })
     .catch(function(error) {

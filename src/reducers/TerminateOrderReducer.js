@@ -1,6 +1,5 @@
 import {
-  ACCEPT_ORDER_SUCCESS,
-  SET_NAVIGATE_HOME_FALSE
+  TERMINATE_ORDER_SUCCESS
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -9,10 +8,8 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case ACCEPT_ORDER_SUCCESS:
+    case TERMINATE_ORDER_SUCCESS:
       return { ...state, ...INITIAL_STATE, navigateHome: true };
-    case SET_NAVIGATE_HOME_FALSE:
-      return { ...state, ...INITIAL_STATE, navigateHome: false };
     default:
       return state;
   }

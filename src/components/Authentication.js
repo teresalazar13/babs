@@ -6,6 +6,17 @@ import { connect } from 'react-redux';
 
 class Authentication extends Component<{}> {
 
+  constructor(props) {
+    super(props);
+  }
+
+  componentWillMount() {
+    const { navigate } = this.props.navigation;
+    if (this.props.user != null) {
+      navigate('Home');
+    }
+  }
+
   componentDidUpdate() {
     const { navigate } = this.props.navigation;
     if (this.props.user != null) {

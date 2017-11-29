@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, ScrollView, ListView } from 'react-native';
-import { listOthersActiveOrders, acceptOrder } from '../actions';
+import { listOthersActiveOrders, acceptOrder, setNavigateHomeFalse } from '../actions';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
@@ -29,14 +29,6 @@ class Home extends Component<{}> {
     this.createDataSource(nextProps);
   }
 
-  componentDidUpdate() {
-    const { navigate } = this.props.navigation;
-    console.log(this.props.navigateHome);
-    if (this.props.navigateHome == true) {
-      navigate('Home');
-    }
-  }
-
   createDataSource({ othersActiveOrders }) {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
@@ -46,6 +38,7 @@ class Home extends Component<{}> {
   }
 
   renderRow(order) {
+    const navigate = this.props.navigation;
     const { title, place, price, phone, createdBy, endDate, _id } = order;
     const titleUpper = title.toUpperCase();
     const address = place.address;
@@ -55,7 +48,7 @@ class Home extends Component<{}> {
     const token = this.props.user.token;
 
     return (
-       <Item
+      <Item
         title={titleUpper}
         address={address}
         price={price}
@@ -65,7 +58,8 @@ class Home extends Component<{}> {
         endDateTime={endDateTime}
         _id = {_id}
         token = {token}
-       />
+        navigate={navigate}
+      />
     );
   }
 
@@ -92,6 +86,7 @@ class Home extends Component<{}> {
             />
           </View>
         </ScrollView>
+
         <Navbar
           navigation={this.props.navigation}
           selectedTab="2"
@@ -123,11 +118,10 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   const { user } = state.auth;
-  const { navigateHome } = state.acceptOrder;
   const othersActiveOrders = _.map(state.othersActiveOrders, (val, uid) => {
     return { ...val, uid };
   });
-  return { user, othersActiveOrders, navigateHome };
+  return { user, othersActiveOrders };
 };
 
 export default connect(mapStateToProps, {

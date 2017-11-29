@@ -19,10 +19,16 @@ class Item extends Component<{}> {
     return {};
   }
 
-  render() {
-    const { title, address, price, phone, createdByUsername, endDateDay, endDateTime, _id, token } = this.props;
+  acceptOrderClick() {
+    const { title, address, price, phone, createdByUsername, endDateDay, endDateTime, _id, token, navigate } = this.props;
 
     const item = { token, _id };
+    this.props.acceptOrder(item);
+    this.props.navigate.navigate('Start');
+  }
+
+  render() {
+    const { title, address, price, phone, createdByUsername, endDateDay, endDateTime, _id, token } = this.props;
 
     return (
       <View style={styles.container}>
@@ -55,7 +61,7 @@ class Item extends Component<{}> {
               </View>
 
               <TouchableHighlight
-                onPress={() => this.props.acceptOrder(item) }
+                onPress={() => this.acceptOrderClick() }
               >
 
                 <View style={styles.containerBottom}>

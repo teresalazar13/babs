@@ -9,6 +9,11 @@ import ItemReceived from './ItemReceived';
 
 class ListOrdersIAccepted extends Component<{}> {
 
+  constructor(props) {
+    super(props);
+    this.renderRow = this.renderRow.bind(this);
+  }
+
   componentWillMount() {
     const token = this.props.user.token;
     this.props.listActiveOrdersIAccepted(token);
@@ -28,12 +33,13 @@ class ListOrdersIAccepted extends Component<{}> {
   }
 
   renderRow(order) {
-    const { title, price, createdBy, place, phone, endDate } = order;
+    const { title, price, createdBy, place, phone, endDate, _id, navigate } = order;
     const titleUpper = title.toUpperCase();
     const address = place.address;
     const createdByUsername = createdBy.username;
     const endDateDay = endDate.substring(0, 10);
     const endDateTime = endDate.substring(11, endDate.length - 5);
+    const token = this.props.user.token;
 
     return (
       <ItemReceived
@@ -44,6 +50,9 @@ class ListOrdersIAccepted extends Component<{}> {
         createdByUsername={createdByUsername}
         endDateDay={endDateDay}
         endDateTime={endDateTime}
+        token={token}
+        _id={_id}
+        navigate={navigate}
       />
     );
   }

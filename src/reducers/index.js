@@ -5,6 +5,7 @@ import OthersActiveOrdersReducer from './OthersActiveOrdersReducer';
 import MyActiveOrdersReducer from './MyActiveOrdersReducer';
 import ActiveOrdersIAcceptedReducer from './ActiveOrdersIAcceptedReducer';
 import AcceptOrderReducer from './AcceptOrderReducer';
+import TerminateOrderReducer from './TerminateOrderReducer';
 
 
 export default combineReducers({
@@ -13,5 +14,6 @@ export default combineReducers({
   othersActiveOrders: OthersActiveOrdersReducer,
   myActiveOrders: MyActiveOrdersReducer,
   activeOrdersIAccepted: ActiveOrdersIAcceptedReducer,
-  acceptOrder: AcceptOrderReducer
+  acceptOrder: AcceptOrderReducer,
+  terminateOrder: TerminateOrderReducer
 });

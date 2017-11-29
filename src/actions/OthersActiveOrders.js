@@ -16,7 +16,6 @@ export const listOthersActiveOrders = (token) => {
     })
     .then((responseJson) => {
       if (responseJson.ok) {
-        console.log(JSON.parse(responseJson._bodyText).data);
         dispatch({ type: LIST_OTHERS_ACTIVE_ORDERS_SUCCESS, payload: JSON.parse(responseJson._bodyText).data });
       }
     })

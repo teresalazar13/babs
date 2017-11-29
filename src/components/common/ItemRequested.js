@@ -1,23 +1,17 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { terminateOrder } from '../../actions';
+import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
+import { connect } from 'react-redux';
 
 class ItemRequested extends Component<{}> {
 
   constructor(props) {
     super(props);
-    this.state = {
-      starCount: 3.5
-    };
-  }
-
-  onStarRatingPress(rating) {
-    this.setState({
-      starCount: rating
-    });
   }
 
   render() {
-    const { title, address, price, phone, createdByUsername, endDateDay, endDateTime } = this.props;
+    const { title, address, price, phone, createdByUsername, endDateDay, endDateTime, token, _id } = this.props;
+    const item = { token, _id };
 
     return (
       <View style={styles.container}>
@@ -45,11 +39,22 @@ class ItemRequested extends Component<{}> {
             </View>
           </View>
 
-          <View style={styles.containerBottom}>
-            <View style={styles.containerTerminate}>
-              <Text style={styles.terminate}>T E R M I N A R</Text>
+          {/*
+
+          <TouchableHighlight
+            onPress={() => this.props.terminateOrder(item) }
+          >
+
+            <View style={styles.containerBottom}>
+              <View style={styles.containerTerminate}>
+                <Text style={styles.terminate}>T E R M I N A R</Text>
+              </View>
             </View>
-          </View>
+
+          </TouchableHighlight>
+
+          */}
+
         </View>
 
       </View>
@@ -154,4 +159,6 @@ const styles = StyleSheet.create({
 });
 
 
-export default ItemRequested;
+export default connect(null, {
+  terminateOrder
+})(ItemRequested);

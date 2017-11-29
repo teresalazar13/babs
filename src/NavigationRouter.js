@@ -5,6 +5,8 @@ import Home from './components/Home';
 import NewRequest from './components/NewRequest';
 import Profile from './components/Profile';
 
+import Item from './components/common/Item';
+
 
 let MyTransition = (index, position) => {
   const inputRange = [index - 1, index, index + 1];
@@ -36,6 +38,21 @@ let TransitionConfiguration = () => {
   }
 };
 
+const HomeNavigator = StackNavigator({
+  Home: {
+    screen: Home,
+    navigationOptions: {
+      header: false
+    }
+  },
+  Item: {
+    screen: Item,
+    navigationOptions: {
+      header: false
+    }
+  },
+});
+
 export const Router = StackNavigator({
     Start: {
       screen: Start,
@@ -52,7 +69,7 @@ export const Router = StackNavigator({
     },
 
     Home: {
-      screen: Home,
+      screen: HomeNavigator,
       navigationOptions: {
         header: false
       }
